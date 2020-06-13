@@ -1,30 +1,5 @@
 import Foundation
 
-public protocol TestCase {
-    associatedtype Element: Equatable
-    
-    func assertTrue(_: Bool)
-    func assertEqual(_ e1: Element, _ e2: Element)
-}
-
-extension TestCase {
-    func assertTrue(_ e: Bool) {
-        if e {
-            print("SUCCESS")
-        } else {
-            print("FAILURE")
-        }
-    }
-    
-    func assertEqual(_ e1: Element, _ e2: Element) {
-        if e1 == e2 {
-            print("SUCCESS")
-        } else {
-            print("FAILURE")
-        }
-    }
-}
-
 class PrimTests: TestCase {
     typealias Element = Double
     
@@ -40,10 +15,10 @@ class PrimTests: TestCase {
 }
 
 extension PrimTests {
-    internal func testIfMethodRetursUpdatedSetForNewVertex() {
+    internal func testIfMethodReturnsUpdatedSetForNewVertex() {
+        // Arrange
         setUpSut()
         
-        // Arrange
         let parent = Vertex(data: 1)
         var set = Set<Vertex<Int>>()
         set.insert(parent)
@@ -57,39 +32,39 @@ extension PrimTests {
         let result = sut.addVertexIfNeeded(to: set, withCurrentCost: currentCost, from: head)
 
         // Assert
-        assertTrue(result!.set.contains(vertexToAdd))
-        assertEqual(result!.cost, 20.0)
+        assertTrue(result!.set.contains(vertexToAdd), testName: "testIfMethodReturnsUpdatedSetForNewVertex - first")
+        assertEqual(result!.cost, 20.0, testName: "testIfMethodReturnsUpdatedSetForNewVertex - second")
         
         tearDownSut()
     }
     
-//    internal func testIfMethodAddsUnvisitedEdgeToQueue() {
-//        setUpSut()
-//
-//        // Arrange
-//        let parent = Vertex<Int>(data: 1)
-//        let source = Vertex<Int>(data: 2)
-//        let destination = Vertex<Int>(data: 3)
-//        let neighbour = Edge(source: source, destination: destination, weight: 10.0)
-//        var priorityQueue = PriorityQueue<(vertex: Vertex<Int>, weight: Double, parent: Vertex<Int>?)>(sort: { $0.weight < $1.weight })
-//        let element: (vertex: Vertex<Int>, weight: Double, parent: Vertex<Int>?) = (Vertex<Int>(data: 100), weight: 100, parent: nil)
-//        priorityQueue.enqueue(element)
-//        var visitedSet = Set<Vertex<Int>>()
-//        visitedSet.insert(parent)
-//
-//        // Act
-//        sut.add(neighbour: neighbour, to: &priorityQueue, having: visitedSet, and: parent)
-//
-//        // Assert
-//        assertEqual(priorityQueue.dequeue()!.vertex.id, neighbour.destination.id)
-//
-//        tearDownSut()
-//    }
+    internal func testIfMethodAddsUnvisitedEdgeToQueue() {
+        // Arrange
+        setUpSut()
+    
+        let parent = Vertex<Int>(data: 1)
+        let source = Vertex<Int>(data: 2)
+        let destination = Vertex<Int>(data: 3)
+        let neighbour = Edge(source: source, destination: destination, weight: 10.0)
+        var priorityQueue = PriorityQueue<(vertex: Vertex<Int>, weight: Double, parent: Vertex<Int>?)>(sort: { $0.weight < $1.weight })
+        let element: (vertex: Vertex<Int>, weight: Double, parent: Vertex<Int>?) = (Vertex<Int>(data: 100), weight: 100, parent: nil)
+        priorityQueue.enqueue(element)
+        var visitedSet = Set<Vertex<Int>>()
+        visitedSet.insert(parent)
+
+        // Act
+        sut.add(neighbour: neighbour, to: &priorityQueue, having: visitedSet, and: parent)
+
+        // Assert
+        assertTrue(priorityQueue.dequeue()!.vertex.data == destination.data, testName: "testIfMethodAddsUnvisitedEdgeToQueue")
+
+        tearDownSut()
+    }
     
     internal func testIfMethodGeneratesCorrectMST() {
+        // Arrange
         setUpSut()
         
-        // Arrange
         let graph = Prim<Int>.Graph()
         let one = graph.createVertex(data: 1)
         let two = graph.createVertex(data: 2)
@@ -113,7 +88,7 @@ extension PrimTests {
         let result = sut.produceMinimumSpanningTree(graph: graph)
         
         // Assert
-        assertEqual(result.cost, 15.0)
+        assertEqual(result.cost, 15.0, testName: "testIfMethodGeneratesCorrectMST")
         
         tearDownSut()
     }
