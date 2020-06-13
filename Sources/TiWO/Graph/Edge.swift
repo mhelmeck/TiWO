@@ -16,9 +16,3 @@ extension Edge: Hashable {
             lhs.weight == rhs.weight
     }
 }
-
-//extension Edge: CustomStringConvertible {
-//    public var description: String {
-//        return "-> .undirected, from: \(source.description), to: \(destination.description), weight: \(weight)"
-//    }
-//}
