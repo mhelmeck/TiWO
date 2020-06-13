@@ -103,7 +103,10 @@ public class MenuOptionExecuter {
         print("*******************************************************************************************")    }
     
     public func executeTests() {
+        let primTests = PrimTests()
         
+        primTests.testIfMethodRetursUpdatedSetForNewVertex()
+        primTests.testIfMethodGeneratesCorrectMST()
     }
     
     public func executeExit() {
