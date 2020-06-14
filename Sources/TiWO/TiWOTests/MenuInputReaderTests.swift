@@ -31,7 +31,7 @@ extension MenuInputReaderTests {
         setUpSut()
         
         // Act & Assert
-        assertFalse(sut.isInputValid("5"), testName: "testMenuInputReaderValidateOnlyFirstFourNumbers - test with 5")
-        assertFalse(sut.isInputValid("aaa"), testName: "testMenuInputReaderValidateOnlyFirstFourNumbers - test with aaa")
+        assertFalse(sut.isInputValid("5"), testName: "testMenuInputReaderDoesNotValidateOtherInputs - test with 5")
+        assertFalse(sut.isInputValid("aaa"), testName: "testMenuInputReaderDoesNotValidateOtherInputs - test with aaa")
     }
 }
