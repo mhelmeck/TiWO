@@ -1,6 +1,6 @@
 import Foundation
 
-public enum MenuOption: CaseIterable {
+public enum MenuOption: CaseIterable, Equatable {
     case primaryExample
     case advancedExample
     case tests

@@ -32,8 +32,8 @@ extension PrimTests {
         let result = sut.addVertexIfNeeded(to: set, withCurrentCost: currentCost, from: head)
 
         // Assert
-        assertTrue(result!.set.contains(vertexToAdd), testName: "testIfMethodReturnsUpdatedSetForNewVertex - first")
-        assertEqual(result!.cost, 20.0, testName: "testIfMethodReturnsUpdatedSetForNewVertex - second")
+        assertTrue(result!.set.contains(vertexToAdd), testName: "testIfMethodReturnsUpdatedSetForNewVertex - first assert example")
+        assertEqual(result!.cost, 20.0, testName: "testIfMethodReturnsUpdatedSetForNewVertex - second assert example")
         
         tearDownSut()
     }

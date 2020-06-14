@@ -86,6 +86,16 @@ public class MenuOptionExecuter {
         priorityQueueTests.testPeekReturnsLastElementFromQueue()
         priorityQueueTests.testEnqueueAddsElementToQueue()
         priorityQueueTests.testDequeueRemovesElementFromQueue()
+        
+        let menuInputReaderTests = MenuInputReaderTests()
+        menuInputReaderTests.testMenuInputReaderValidateOnlyFirstFourNumbers()
+        menuInputReaderTests.testMenuInputReaderDoesNotValidateOtherInputs()
+        
+        let menuInputMapperTests = MenuInputMapperTests()
+        menuInputMapperTests.testMenuInputMapperMapsOneIntoPrimaryExampleOption()
+        menuInputMapperTests.testMenuInputMapperMapsTwoIntoAdvancedExampleOption()
+        menuInputMapperTests.testMenuInputMapperMapsThreeIntoTestsOption()
+        menuInputMapperTests.testMenuInputMapperMapsFourIntoExitOption()
     }
     
     public func executeExit() {

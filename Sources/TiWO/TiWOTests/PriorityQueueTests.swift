@@ -33,9 +33,9 @@ extension PriorityQueueTests {
         let one = graph.createVertex(data: 1)
         
         // Act & Assert
-        assertTrue(sut.isEmpty, testName: "testEnqueueAddsElementToQueue - first")
+        assertTrue(sut.isEmpty, testName: "testEnqueueAddsElementToQueue - first assert example")
         sut.enqueue((vertex: one, weight: 0.0, parent: nil))
-        assertFalse(sut.isEmpty, testName: "testEnqueueAddsElementToQueue - second")
+        assertFalse(sut.isEmpty, testName: "testEnqueueAddsElementToQueue - second assert example")
     }
     
     internal func testDequeueRemovesElementFromQueue() {
@@ -46,9 +46,9 @@ extension PriorityQueueTests {
         sut.enqueue((vertex: one, weight: 0.0, parent: nil))
         
         // Act & Assert
-        assertFalse(sut.isEmpty, testName: "testDequeueRemovesElementFromQueue - first")
+        assertFalse(sut.isEmpty, testName: "testDequeueRemovesElementFromQueue - first assert example")
         _ = sut.dequeue()
-        assertTrue(sut.isEmpty, testName: "testDequeueRemovesElementFromQueue - second")
+        assertTrue(sut.isEmpty, testName: "testDequeueRemovesElementFromQueue - second assert example")
     }
     
     internal func testIsEmptyReturnsFalseIfThereIsNoElementsInTheQueue() {

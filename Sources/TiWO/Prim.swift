@@ -1,3 +1,16 @@
+protocol PrimProtocol {
+    associatedtype T: Hashable
+    
+    func produceMinimumSpanningTree(graph: Prim<T>.Graph) -> (cost: Double, mst: Prim<T>.Graph)
+    func addVertexIfNeeded(to set: Set<Vertex<T>>,
+                           withCurrentCost cost: Double,
+                           from head: (vertex: Vertex<T>, weight: Double, parent: Vertex<T>?)) -> (set: Set<Vertex<T>>, cost: Double)?
+    func add<T>(neighbour:  Edge<T>,
+                to priorityQueue: inout PriorityQueue<(vertex: Vertex<T>, weight: Double, parent: Vertex<T>?)>,
+                having visited: Set<Vertex<T>>,
+                and parent: Vertex<T>)
+}
+
 class Prim<T: Hashable>: PrimProtocol {
     typealias Graph = AdjacencyList<T>
     
@@ -61,42 +74,4 @@ class Prim<T: Hashable>: PrimProtocol {
             priorityQueue.enqueue((vertex: neighbour.destination, weight: neighbour.weight ?? 0.0, parent: parent))
         }
     }
-}
-
-protocol PrimProtocol {
-    associatedtype T: Hashable
-    
-    func produceMinimumSpanningTree(graph: Prim<T>.Graph) -> (cost: Double, mst: Prim<T>.Graph)
-    func addVertexIfNeeded(to set: Set<Vertex<T>>,
-                           withCurrentCost cost: Double,
-                           from head: (vertex: Vertex<T>, weight: Double, parent: Vertex<T>?)) -> (set: Set<Vertex<T>>, cost: Double)?
-    func add<T>(neighbour:  Edge<T>,
-                to priorityQueue: inout PriorityQueue<(vertex: Vertex<T>, weight: Double, parent: Vertex<T>?)>,
-                having visited: Set<Vertex<T>>,
-                and parent: Vertex<T>)
-}
-
-
-class XXX: PrimProtocol {
-    typealias T = Int
-    
-    func produceMinimumSpanningTree(graph: Prim<Int>.Graph) -> (cost: Double, mst: Prim<Int>.Graph) {
-        return (cost: 0.0, mst: Prim<Int>.Graph())
-    }
-    
-    func addVertexIfNeeded(to set: Set<Vertex<Int>>,
-                           withCurrentCost cost: Double,
-                           from head: (vertex: Vertex<Int>, weight: Double, parent: Vertex<Int>?)) -> (set: Set<Vertex<Int>>, cost: Double)? {
-        return (set: Set<Vertex<Int>>(), cost: 0.0)
-    }
-    
-    func add<T>(neighbour: Edge<T>,
-                to priorityQueue: inout PriorityQueue<(vertex: Vertex<T>, weight: Double, parent: Vertex<T>?)>,
-                having visited: Set<Vertex<T>>,
-                and parent: Vertex<T>) {
-    }
-}
-
-enum PrimError: Error {
-    case notImplemented
 }
